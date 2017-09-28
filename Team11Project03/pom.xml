@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>HBV501G</groupId>
-    <artifactId>SpringProject02try2</artifactId>
+    <artifactId>Team11Project03</artifactId>
     <version>0.1</version>
 
     <parent>
@@ -62,5 +62,5 @@
             </plugin>
         </plugins>
     </build>
-    <name>SpringProject02try2</name>
+    <name>Team11Project03</name>
 </project>
