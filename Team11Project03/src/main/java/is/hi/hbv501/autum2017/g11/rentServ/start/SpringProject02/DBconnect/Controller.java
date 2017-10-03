@@ -10,5 +10,5 @@ package is.hi.hbv501.autum2017.g11.rentServ.start.SpringProject02.DBconnect;
  * @author ulfur
  */
 public class Controller {
-    int caaaaam;
+    
 }
