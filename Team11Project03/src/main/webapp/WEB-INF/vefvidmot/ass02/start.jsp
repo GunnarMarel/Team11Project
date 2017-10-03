@@ -17,6 +17,7 @@
         <h1>Group 11 start page</h1>
         <br/>
         <br/>
+        <a href="/ass02/allUsers">Show all users</a><br/>
         <a href="/ass02/allRentals">Show all rentals</a><br/>
         <a href="/ass02/search">Search rentals</a><br/>
         

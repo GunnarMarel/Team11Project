@@ -1,5 +1,7 @@
 package is.hi.byrjun.controller;
 
+import is.hi.Team11.model.User;
+import is.hi.Team11.services.UserService;
 import is.hi.hbv501.autum2017.g11.rentServ.start.SpringProject02.rentalData.Rental;
 import is.hi.hbv501.autum2017.g11.rentServ.start.SpringProject02.rentalData.*;
 import is.hi.hbv501.autum2017.g11.rentServ.start.SpringProject02.userData.CarType;
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/ass02") // Notice here that the Request Mapping is set at the Class level
 public class ass02Controler {
 
+    
+    UserService userService;
+    
     /**
      * returns a start page
      *
@@ -41,7 +46,21 @@ public class ass02Controler {
     public String searchPage() {
         return "ass02/search";
     }
-
+/**
+     * 
+     *
+     * @param model
+     * @return 
+     */
+  /*  @RequestMapping(value = "/listUsers", method = RequestMethod.GET)
+    public String listUsers(Model model) {
+        ArrayList<User> listi;
+        listi = (ArrayList<User>) userService.allUsers();
+        model.addAttribute("users", listi);
+        return "ass02/allUsers";
+    }
+*/
+    
     /**
      * diplays all rentals
      *
