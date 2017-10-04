@@ -16,9 +16,9 @@
                         
                     </tr>
                 </thead>
-                <c:forEach var ="User" items="${users}">
+                <c:forEach var ="user" items="${users}">
                     <tr>
-                        <td>${User.firstName} </td>
+                        <td>${user.firstName} </td>
                     </tr>
                 </c:forEach>
             </table>

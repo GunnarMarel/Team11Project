@@ -18,10 +18,10 @@ public interface UserService {
     /**
      * Athugar hvort nafn er á réttu formi, þ.e. verða að vera a.m.k. tvö orð.
      *
-     * @param nafn
+     * @param firstName
      * @return skilar satt ef nafn er á réttu formi annars ósatt
      */
-    public boolean erNafnRett(String nafn);
+    public boolean erNafnRett(String firstName);
 
     /**
      * Skilar öllum kennurum í kennariRep
@@ -32,7 +32,7 @@ public interface UserService {
     
     /**
      * Vistar kennari í kennarasafnið
-     * @param kennari
+     * @param user
      * @return 
      */
      public User save(User user);

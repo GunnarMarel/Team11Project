@@ -1,22 +1,23 @@
 
 package is.hi.Team11.repository;
 
-import is.hi.Team11.model.User;
+import is.hi.Team11.model.Rental;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 
-public interface UserRepository extends JpaRepository<User, Long>{
+
+public interface RentalRepository extends JpaRepository<Rental, Long>{
     
-    List<User> findAll();
+    List<Rental> findAll();
     
     /**
      * @param User 
      */
-    User save (User user);
+    Rental save (Rental ental);
 
 
-   List<User> findAllByOrderByIdDesc();
+   List<Rental> findAllByOrderByIdDesc();
 
 }

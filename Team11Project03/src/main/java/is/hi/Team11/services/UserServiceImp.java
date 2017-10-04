@@ -26,7 +26,7 @@ public class UserServiceImp implements UserService{
     
     
     @Override
-    public boolean erNafnRett(String nafn) {
+    public boolean erNafnRett(String firstName) {
         return true;
     }
 

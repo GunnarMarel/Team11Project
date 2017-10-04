@@ -52,7 +52,7 @@ public class ass02Controler {
      * @param model
      * @return 
      */
-  /*  @RequestMapping(value = "/listUsers", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/listUsers", method = RequestMethod.GET)
     public String listUsers(Model model) {
         ArrayList<User> listi;
         listi = (ArrayList<User>) userService.allUsers();
