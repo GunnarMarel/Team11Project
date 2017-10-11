@@ -6,8 +6,6 @@
 package is.hi.Team11.model;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -20,35 +18,64 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Notandi
+ * Rental contains all details of a rental unit
+ * 
+ * @author Gunnar Marel
+ * @date October 2017 
+ * HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
  */
 @Entity
 @Table (name="Rental")
 public class Rental {
      
-    // Skilgreini id sem auðkenni (e. identity)  hlutarins 
+     
     @Id
     @Column(name="rentalId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long rentalId;
     
-    
-    public Long getUSerId() {
-        return rentalId;
-    }
-
-    public void setUserId(Long userId) {
-        this.rentalId = userId;
-    }
-    private int ownerId;
-    private int carId;
+    private Long ownerId;
+    private Long carId;
     private Date startDate;
     private Date endDate;
     private int price;
+    private String ownerName;
+    private String carModel;
+    private String carType;
+    
+    public Rental(String ownerName, String carModel,String carType, Date startDate, Date endDate, int price){
+        this.ownerName = ownerName;
+        this.carModel = carModel;
+        this.carType = carType;
+        this.price = price;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
+    public String getCarType() {
+        return carType;
+    }
 
-    // Smiður til að búa til tóman hlut. Hefur enga parametra
+    public void setCarType(String carType) {
+        this.carType = carType;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
     public Rental() {
         
     }
@@ -57,11 +84,11 @@ public class Rental {
         return rentalId;
     }
 
-    public int getOwnerId() {
+    public Long getOwnerId() {
         return ownerId;
     }
 
-    public int getCarId() {
+    public Long getCarId() {
         return carId;
     }
 
@@ -81,11 +108,11 @@ public class Rental {
         this.rentalId = rentalId;
     }
 
-    public void setOwnerId(int ownerId) {
+    public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
 
-    public void setCarId(int carId) {
+    public void setCarId(Long carId) {
         this.carId = carId;
     }
 
@@ -99,10 +126,5 @@ public class Rental {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    
-    
+    }   
 }
-
-

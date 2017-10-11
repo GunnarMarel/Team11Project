@@ -6,8 +6,6 @@
 package is.hi.Team11.model;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -20,21 +18,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Notandi
+ * User contains details of user accounts
+ * 
+ * @author Gunnar Marel
+ * @date October 2017 
+ * HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
  */
 @Entity
-@Table (name="User")
+@Table (name="users")
 public class User {
      
-    // Skilgreini id sem auðkenni (e. identity)  hlutarins 
     @Id
     @Column(name="userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     
-    
-    public Long getUSerId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -47,6 +46,12 @@ public class User {
     private String logInName;
     private String logInPass;
 
+    public User(String fn, String ln, String id, String pass) {
+        this.firstName = fn;
+        this.lastName = ln;
+        this.logInName = id;
+        this.logInPass = pass;
+    }
     
     
     
@@ -57,7 +62,6 @@ public class User {
         
 
 
-    // Smiður til að búa til tóman hlut. Hefur enga parametra
     public User() {
         
     }
@@ -101,7 +105,4 @@ public class User {
     public void setLogInPass(String logInPass) {
         this.logInPass = logInPass;
     }
-    
 }
-
-
