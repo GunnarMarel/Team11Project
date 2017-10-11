@@ -5,10 +5,6 @@
  */
 package is.hi.Team11.model;
 
-import java.awt.Image;
-import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -21,51 +17,53 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Notandi
+ * Car contains all details of cars owned by users
+ * 
+ * @author Gunnar Marel
+ * @date October 2017 
+ * HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
  */
 @Entity
-@Table (name="User")
+@Table (name="car")
 public class Car {
      
-    // Skilgreini id sem auðkenni (e. identity)  hlutarins 
     @Id
     @Column(name="carId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long carId;
     
-    
-    public Long getUSerId() {
-        return carId;
-    }
-
-    public void setUserId(Long userId) {
-        this.carId = carId;
-    }
-    private int ownerId;
+    private Long ownerId;
     private String carType;
-    private Image Pictures;
     private String model;
+    private String ownerName;
 
-    // Smiður til að búa til tóman hlut. Hefur enga parametra
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
     public Car() {
-        
+    }
+    
+    public Car(String ownerName, String carType, String model) {
+        this.ownerName = ownerName;
+        this.carType = carType;
+        this.model = model;
     }
 
     public Long getCarId() {
         return carId;
     }
 
-    public int getOwnerId() {
+    public Long getOwnerId() {
         return ownerId;
     }
 
     public String getCarType() {
         return carType;
-    }
-
-    public Image getPictures() {
-        return Pictures;
     }
 
     public String getModel() {
@@ -76,7 +74,7 @@ public class Car {
         this.carId = carId;
     }
 
-    public void setOwnerId(int ownerId) {
+    public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -84,16 +82,9 @@ public class Car {
         this.carType = carType;
     }
 
-    public void setPictures(Image Pictures) {
-        this.Pictures = Pictures;
-    }
 
     public void setModel(String model) {
         this.model = model;
     }
 
-    
-    
 }
-
-
