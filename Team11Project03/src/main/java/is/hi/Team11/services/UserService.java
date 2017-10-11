@@ -5,39 +5,57 @@ import java.util.List;
 
 /**
  *
- * @author Ebba Þóra Hvannberg
- * @date september 2017 
+ * @author Óskar Gíslason & Gunnar Marel
+ * @date október 2017 
  * HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
  *
- * Þjónusta sem athugar hvort nafn er á réttu formi, bætir við kennara og námskeiði
- * á kennara 
+ * Service that saves users, finds users by username, lists all users 
+ * and verifies login credentials.
  *
  */
 public interface UserService {
 
     /**
-     * Athugar hvort nafn er á réttu formi, þ.e. verða að vera a.m.k. tvö orð.
+     * Returns all users in userRep
      *
-     * @param firstName
-     * @return skilar satt ef nafn er á réttu formi annars ósatt
-     */
-    public boolean erNafnRett(String firstName);
-
-    /**
-     * Skilar öllum kennurum í kennariRep
-     *
-     * @return listi af kennurum
+     * @return list of users
      */
     public List<User> allUsers();
     
     /**
-     * Vistar kennari í kennarasafnið
+     * Saves a user to userRep
      * @param user
      * @return 
      */
-     public User save(User user);
-          
-    
+    public User save(User user);
 
+    /**
+     * Searches for a user by username
+     * @param username
+     * @return 
+     */     
+    public User findUser(String username);
+    
+    /**
+     * Checks whether a username already exists in the database
+     * @param username
+     * @return 
+     */
+    public Boolean usernameTaken(String username);
+
+    /**
+     * Checks whether login and password match a registered user
+     * @param logInName
+     * @param logInPass
+     * @return 
+     */
+    public User userLogin(String logInName, String logInPass);
+    
+    /**
+     * Updates user information and saves changes to database
+     * @param logInName
+     * @return 
+     */
+    public User updateUser(String logInName);
              
 }
