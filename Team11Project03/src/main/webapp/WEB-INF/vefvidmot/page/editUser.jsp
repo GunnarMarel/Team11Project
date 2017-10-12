@@ -15,11 +15,11 @@
 	<form method="post">
             	<div>
 			<label>First name: ${user.firstName}</label>
-			<input type="text" id="firstName" name="firstName" placeholder="Change first name" class="form-control"/>
+			<input type="text" id="firstName" name="firstName" placeholder="Change first name"  maxlength="12" required="required" class="form-control"/>
 		</div>
             	<div>
 			<label>Last name: ${user.lastName}</label>
-			<input type="text" id="lastName" name="lastName" placeholder="Change last name" class="form-control"/>
+			<input type="text" id="lastName" name="lastName" placeholder="Change last name"  maxlength="12" required="required" class="form-control"/>
 		</div>
                 <button id="loginButton" class="form-control">Confirm</button>
 	</form>

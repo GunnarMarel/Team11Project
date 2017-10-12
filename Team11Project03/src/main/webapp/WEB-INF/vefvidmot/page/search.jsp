@@ -17,27 +17,20 @@
         <form method="POST" action="/page/searchResults">
             
             <br>
-            Car type<br>
-            <input type="radio" name="cartype" value="Hatchback"> Hatchback<br>
-            <input type="radio" name="cartype" value="Sedan"> Sedan<br>
-            <input type="radio" name="cartype" value="SUV"> SUV<br>
-            <input type="radio" name="cartype" value="Convertible"> Convertible<br>
-
-            <br>
-            Car type:
-            <select>
-            <option name="cartype" value="Hatchback"> Hatchback</option>
-            <option name="cartype" value="Sedan"> Sedan</option>
-            <option name="cartype" value="SUV"> SUV</option>
-            <option name="cartype" value="Convertible"> Convertible</option>
-            </select>
-            <br>
 
             Start date: 
             <input name="startDate" type="date" placeholder="date" min="2000-01-01" max="2100-01-01"</input > 
             <br>
             End date: 
             <input name="endDate" type="date" placeholder="date"  min="2000-01-01" max="2100-01-01"</input >
+            <br>
+            Car type:
+            <select name="cartype">
+            <option value="Hatchback"> Hatchback</option>
+            <option value="Sedan"> Sedan</option>
+            <option value="SUV"> SUV</option>
+            <option value="Convertible"> Convertible</option>
+            </select>
             <br>
             <input type="submit" value="Search"/> 
 

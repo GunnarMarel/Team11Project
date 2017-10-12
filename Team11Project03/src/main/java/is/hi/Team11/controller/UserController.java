@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date October 2017 
  * HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
  *
- * Controller for a car rental web application. Controls user registration and login.
+ * Controller for a car rental web application. Controls user registration, 
+ * user information and user login/logout.
  */
 @Controller
 public class UserController {
@@ -46,7 +47,7 @@ public class UserController {
             @RequestParam String logInName, @RequestParam String logInPass, Model model) { 
         
         if (userService.usernameTaken(logInName) == true) {
-            model.addAttribute("registerError", "Username is already taken.");
+            model.addAttribute("registerError", "error: Username is already taken.");
             return "page/register";
         }
         else {
@@ -83,10 +84,11 @@ public class UserController {
      * @return page where user is logged in
      */
     @RequestMapping(value = "page/login", method = RequestMethod.POST)
-    public String verifyUser(@RequestParam String logInName, @RequestParam String logInPass, Model model, HttpSession session) {
+    public String verifyUser(@RequestParam String logInName, 
+            @RequestParam String logInPass, Model model, HttpSession session) {
         User user = userService.userLogin(logInName, logInPass);
         if (user == null) {
-            model.addAttribute("logInError", "Login attempt failed, please try again.");
+            model.addAttribute("logInError", "attempt failed, please try again.");
             return "page/login";
         }
         model.addAttribute("user", user);
@@ -107,7 +109,6 @@ public class UserController {
     
     /**
      * Displays all users
-     *
      * @param model
      * @return page with all users
      */
@@ -138,7 +139,8 @@ public class UserController {
      * @return page for logged in users
      */
     @RequestMapping(value = "page/editUser", method = RequestMethod.POST)
-    public String saveChanges(@RequestParam String firstName, @RequestParam String lastName, HttpSession session, Model model) {
+    public String saveChanges(@RequestParam String firstName, 
+            @RequestParam String lastName, HttpSession session, Model model) {
         User user = (User)session.getAttribute("loggedUser");
         user.setFirstName(firstName);
         user.setLastName(lastName);

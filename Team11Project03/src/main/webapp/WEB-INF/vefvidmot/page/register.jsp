@@ -9,7 +9,7 @@
     <title>Sign up</title>
 </head>
 <body>
-    <h4>${registerError}<h4>
+    <h4>User registration ${registerError} <h4>
     <div class="form-group form">
 	<form method="post">
             	<div>
@@ -22,11 +22,11 @@
 		</div>
 		<div>
 			<label>User name:</label>
-			<input type="text" id="logInName" name="logInName" placeholder="user name" class="form-control"/>
+			<input type="text" id="logInName" name="logInName" placeholder="user name" maxlength="12" required="required" class="form-control"/>
 		</div>
 		<div>
 			<label>Password:</label>
-			<input type="password" id="logInPass" name="logInPass" placeholder="password" class="form-control"/>
+			<input type="password" id="logInPass" name="logInPass" placeholder="password" maxlength="12" required="required" class="form-control"/>
 		</div>
 		<button id="loginButton" class="form-control">Register</button>
 	</form>

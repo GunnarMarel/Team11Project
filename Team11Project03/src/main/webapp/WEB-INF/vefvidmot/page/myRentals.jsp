@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    
     <c:choose>
         <c:when test="${not empty myCars}">
             <table class="myCars">
@@ -24,7 +25,7 @@
                 </thead>
                 <c:forEach var ="car" items="${myCars}">
                     <tr>
-                        <td><a href="/page/loggedUser">${car.carModel}</a>
+                          <td>${car.carModel}</a>
                         <td>${car.carType} </td>
                         <td>${car.startDate} to: ${car.endDate} </td>
                         <td>${car.price}$ </td>
@@ -36,6 +37,7 @@
             <h3> You have not registered a rental</h3>
         </c:otherwise>
     </c:choose>
+    
 </body>
 
 </html>

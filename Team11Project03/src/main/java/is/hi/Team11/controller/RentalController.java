@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -87,7 +89,20 @@ public class RentalController {
         User user = (User)session.getAttribute("loggedUser");
         model.addAttribute("myCars", rentalService.allMyRentals(user.getLogInName()));
         return "page/myRentals";  
-    }    
+    }
+    
+    /**
+     * Gets information about chosen car and sends user to new page with said information
+     * @param model
+     * @param rentalId
+     * @return page with info on chosen car
+     */
+    @RequestMapping(value = "page/allRentals", method = RequestMethod.POST)
+    public String moreInfo(Model model, @RequestParam int rentalId) {
+        Long id = Long.valueOf(rentalId);
+        model.addAttribute("rental", rentalService.findRental(id));
+        return "page/moreInfo";  
+    }   
     
     /**
      * Parses date from string and converts it to sql Date
@@ -104,7 +119,8 @@ public class RentalController {
             return null;
         }
     }
-    /* 
+
+/* 
     public List availableDates(String sd, String ed) {
         Date start = dateParser(sd);
         Date end = dateParser(ed);
@@ -117,5 +133,7 @@ public class RentalController {
         }
         return dates;
     }
+
 */
+
 }
