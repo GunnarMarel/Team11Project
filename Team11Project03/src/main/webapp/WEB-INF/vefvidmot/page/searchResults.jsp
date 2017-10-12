@@ -32,6 +32,7 @@
             <h3> No rentals available at that time</h3>
         </c:otherwise>
     </c:choose>
+            <a href="/page/search">Back to search</a>
 </body>
 
 </html>

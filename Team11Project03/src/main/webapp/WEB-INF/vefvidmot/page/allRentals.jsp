@@ -24,7 +24,11 @@
                 </thead>
                 <c:forEach var ="car" items="${carList}">
                     <tr>
-                        <td><a href="/page/loggedUser">${car.carModel}</a>
+                        <td>
+                            <form method="POST">
+                                <input type="submit" value="${car.carModel}" /> 
+                                <input name="rentalId" type="hidden" value="${car.rentalId}" /> </td>
+                            </form>
                         <td>${car.carType} </td>
                         <td>${car.startDate} to: ${car.endDate} </td>
                         <td>${car.price}$ </td>

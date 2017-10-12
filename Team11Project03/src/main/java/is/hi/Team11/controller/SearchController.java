@@ -53,7 +53,6 @@ public class SearchController {
             @RequestParam(value = "startDate", required = false) String startDate,
             @RequestParam(value = "endDate", required = false) String endDate,
             ModelMap model) {
-        
         model.addAttribute("resList", rentalService.rentalSearch(carType, dateParser(startDate), dateParser(endDate)));
         return "page/searchResults";
     } 

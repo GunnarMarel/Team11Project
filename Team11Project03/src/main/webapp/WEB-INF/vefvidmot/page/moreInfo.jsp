@@ -7,21 +7,18 @@
 
 <head>
     <jsp:include page="/WEB-INF/vefvidmot/page/headOfPage.jsp"/>
-    <title>Welcome</title>
+    <title>Rental information</title>
 </head>
 <body>
-    
-    <br/>
 
-        <h1>User home<br/> </h1>
+        <h1>${rental.carModel}</h1>
             <br/>
-        <a href="/page/listUsers">Show all users</a><br/>
-        <a href="/page/carRegister">Register your rental</a><br/>
-        <a href="/page/myRentals">Show your rentals</a><br/>
-        <a href="/page/allRentals">Show all rentals</a><br/>
-        <a href="/page/search">Search rentals</a><br/>
-              
-
+            <p>Owned by ${rental.ownerName}</p>
+            <p>Car rating: </p>
+            <p>Description: </p>
+            <p>Price per day: ${rental.price}$</p>         
+            
+        <a href="/page/loggedUser">Lease car</a><br/>
 </body>
 
 </html>

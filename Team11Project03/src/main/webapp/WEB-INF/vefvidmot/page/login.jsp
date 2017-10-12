@@ -9,7 +9,7 @@
     <title>Login</title>
 </head>
 <body>
-    <h4>${logInError}</h4>
+    <h4>User login ${logInError}</h4>
 
 <div class="form-group form">
 	<form action='login' method="post">
