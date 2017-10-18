@@ -29,9 +29,9 @@ public class UserController {
      * Page where users input their user information
      * @return page with registration forms
      */
-    @RequestMapping(value = "page/register")
+    @RequestMapping(value = "/register")
     public String userRegister() {
-        return "page/register";
+        return "register";
     }  
     
     /**
@@ -42,18 +42,18 @@ public class UserController {
      * @param logInPass
      * @return login page
      */
-    @RequestMapping(value = "page/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String saveUser(@RequestParam String firstName, @RequestParam String lastName, 
             @RequestParam String logInName, @RequestParam String logInPass, Model model) { 
         
         if (userService.usernameTaken(logInName) == true) {
             model.addAttribute("registerError", "error: Username is already taken.");
-            return "page/register";
+            return "register";
         }
         else {
             User user = new User(firstName, lastName, logInName, logInPass);
             userService.save(user);
-            return "page/login";
+            return "login";
         }
     } 
     
@@ -61,19 +61,19 @@ public class UserController {
      * Login page where users input their username and password 
      * @return page with login forms
      */
-    @RequestMapping("page/login")
+    @RequestMapping("/login")
     public String loginPage(){
-        return "page/login";                           
+        return "login";                           
     }
     
     /**
      * Start page for users that are logged in
      * @return page for logged in users
      */
-    @RequestMapping("page/loggedUser")
+    @RequestMapping("/loggedUser")
     public String loggedPage(Model model, HttpSession session){
         model.addAttribute("user", (User)session.getAttribute("loggedUser"));
-        return "page/loggedUser";                            
+        return "loggedUser";                            
     }      
     
     /**
@@ -83,17 +83,17 @@ public class UserController {
      * @param model
      * @return page where user is logged in
      */
-    @RequestMapping(value = "page/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String verifyUser(@RequestParam String logInName, 
             @RequestParam String logInPass, Model model, HttpSession session) {
         User user = userService.userLogin(logInName, logInPass);
         if (user == null) {
             model.addAttribute("logInError", "attempt failed, please try again.");
-            return "page/login";
+            return "login";
         }
         model.addAttribute("user", user);
         session.setAttribute("loggedUser", user);
-        return "page/loggedUser";
+        return "loggedUser";
     }
     
     /**
@@ -101,10 +101,10 @@ public class UserController {
      * @param session
      * @return welcome page
      */
-    @RequestMapping(value = "page/logout")
+    @RequestMapping(value = "/logout")
     public String logout(HttpSession session){
         session.removeAttribute("loggedUser");
-        return "page/welcome";
+        return "welcome";
     }
     
     /**
@@ -112,10 +112,10 @@ public class UserController {
      * @param model
      * @return page with all users
      */
-    @RequestMapping(value = "page/listUsers", method = RequestMethod.GET)
+    @RequestMapping(value = "/listUsers", method = RequestMethod.GET)
     public String listUsers(Model model) {
         model.addAttribute("users", userService.allUsers());
-        return "page/allUsers";
+        return "allUsers";
     }    
     
     /**
@@ -124,11 +124,11 @@ public class UserController {
      * @param session
      * @return page with user info
      */
-    @RequestMapping(value = "page/editUser")
+    @RequestMapping(value = "/editUser")
     public String editUser(Model model, HttpSession session) {
         User user = (User)session.getAttribute("loggedUser"); 
         model.addAttribute("user", userService.findUser(user.getLogInName()));
-        return "page/editUser";
+        return "editUser";
     }
     
     /**
@@ -138,7 +138,7 @@ public class UserController {
      * @param session
      * @return page for logged in users
      */
-    @RequestMapping(value = "page/editUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/editUser", method = RequestMethod.POST)
     public String saveChanges(@RequestParam String firstName, 
             @RequestParam String lastName, HttpSession session, Model model) {
         User user = (User)session.getAttribute("loggedUser");
@@ -146,6 +146,6 @@ public class UserController {
         user.setLastName(lastName);
         userService.save(user);
         model.addAttribute("user", user);
-        return "page/loggedUser";    
+        return "loggedUser";    
     }
 }

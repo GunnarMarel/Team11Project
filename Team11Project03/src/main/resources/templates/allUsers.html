@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Slab" />
+        <link rel="stylesheet" href="styles.css">
+        <title>All users</title>
+    </head>
+    <body>
+      <header class="subpage">
+        <nav class="fixed">
+          <h4 class="heading heading--haus">Stutt Leiga</h4>
+          <div class="headlinks">
+            <form>
+              <input type="button" class="button button--head" value="User"/>
+            </form>
+            <form>
+              <input type="button" class="button button--head" value="Logout" onclick="window.location.href='/logout.html'" />
+            </form>
+            <form>
+              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'" />
+            </form>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <div class="grid">
+          <div class="row">
+            <div class="col col-6 col-sm-12">
+              <h2 class="heading heading--main">All users:</h2>
+                  <table class="search-list">
+                    <tr>
+                      <th>User name: </th>
+                    </tr>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.logInName}" />
+                    </tr>
+                  </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="bottom-footer">
+          <p>
+            © Stutt Leiga 2017
+          </p>
+        </div>
+      </footer>
+    </body>
+</html>

@@ -33,9 +33,9 @@ public class SearchController {
      *
      * @return search page
      */
-    @RequestMapping("page/search")
+    @RequestMapping("/search")
     public String searchPage() {
-        return "page/search";
+        return "search";
     }    
      
     /**
@@ -47,14 +47,14 @@ public class SearchController {
      * @param model
      * @return page with search results
      */
-    @RequestMapping(value = "page/searchResults", method = RequestMethod.POST)
+    @RequestMapping(value = "/searchResults", method = RequestMethod.POST)
     public String searchResults(
             @RequestParam(value = "cartype", required = false) String carType,
             @RequestParam(value = "startDate", required = false) String startDate,
             @RequestParam(value = "endDate", required = false) String endDate,
             ModelMap model) {
         model.addAttribute("resList", rentalService.rentalSearch(carType, dateParser(startDate), dateParser(endDate)));
-        return "page/searchResults";
+        return "searchResults";
     } 
     
     /**

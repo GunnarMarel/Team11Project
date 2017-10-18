@@ -39,9 +39,9 @@ public class RentalController {
      * Page where a user registers a car for rent
      * @return page with car registration forms
      */
-    @RequestMapping(value = "page/carRegister")
+    @RequestMapping(value = "/carRegister")
     public String carRegister() {
-        return "page/carRegister";
+        return "carRegister";
     } 
     
    /**
@@ -53,7 +53,7 @@ public class RentalController {
      * @param endDate
      * @return start page for logged in users
      */
-    @RequestMapping(value = "page/carRegister", method = RequestMethod.POST)
+    @RequestMapping(value = "/carRegister", method = RequestMethod.POST)
     public String saveCar(@RequestParam(value = "cartype", required = false) String cartype, @RequestParam String model, 
             @RequestParam int price, @RequestParam String startDate, @RequestParam String endDate, HttpSession session) {
         
@@ -63,7 +63,7 @@ public class RentalController {
                 
         carService.save(car);
         rentalService.save(rental);
-        return "page/loggedUser";
+        return "loggedUser";
     }  
     
     /**
@@ -72,10 +72,10 @@ public class RentalController {
      * @param model
      * @return page with all rentals
      */
-    @RequestMapping("page/allRentals")
+    @RequestMapping("/allRentals")
     public String allRentals(Model model) {
         model.addAttribute("carList", rentalService.allRentals());
-        return "page/allRentals";  
+        return "allRentals";  
     }
 
     /**
@@ -84,11 +84,11 @@ public class RentalController {
      * @param model
      * @return page with users rental cars
      */
-    @RequestMapping("page/myRentals")
+    @RequestMapping("/myRentals")
     public String myRentals(Model model, HttpSession session) {
         User user = (User)session.getAttribute("loggedUser");
         model.addAttribute("myCars", rentalService.allMyRentals(user.getLogInName()));
-        return "page/myRentals";  
+        return "myRentals";  
     }
     
     /**
@@ -97,11 +97,11 @@ public class RentalController {
      * @param rentalId
      * @return page with info on chosen car
      */
-    @RequestMapping(value = "page/allRentals", method = RequestMethod.POST)
+    @RequestMapping(value = "/allRentals", method = RequestMethod.POST)
     public String moreInfo(Model model, @RequestParam int rentalId) {
         Long id = Long.valueOf(rentalId);
         model.addAttribute("rental", rentalService.findRental(id));
-        return "page/moreInfo";  
+        return "moreInfo";  
     }   
     
     /**
