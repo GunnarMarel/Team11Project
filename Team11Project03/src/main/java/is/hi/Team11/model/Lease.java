@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
  */
 @Entity
-@Table (name = "lease")
+@Table (name="lease")
 public class Lease {
 
     @Id

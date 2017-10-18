@@ -21,8 +21,8 @@ public class StartController {
      * Welcome page where users can register an account or log in 
      * @return welcome page
      */
-    @RequestMapping("page/welcome")
+    @RequestMapping("/welcome")
     public String welcomePage(){
-        return "page/welcome";                           
+        return "welcome";                           
     }
 }

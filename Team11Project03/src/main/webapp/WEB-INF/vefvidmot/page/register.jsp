@@ -9,7 +9,7 @@
     <title>Sign up</title>
 </head>
 <body>
-    <h4>User registration ${registerError} <h4>
+    <h4>User registration ${registerError} </h4>
     <div class="form-group form">
 	<form method="post">
             	<div>
