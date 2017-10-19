@@ -23,8 +23,8 @@
         <div class="grid">
           <div class="row">
             <div class="col col-6 col-sm-12">
-              <form class="info-box" action='signup' method="post">
-                <h2 class="heading heading--main">User registration ${registerError} </h2>
+              <form class="info-box" method="post">
+                  <h2 class="heading heading--main">User registration </h2><h2 th:text="${registerError}"</h2>
                 <div class="fill-in-line">
                   <label for="first-name">First name:</label>
                   <input class="line-length" type="text" id="firstName" name="firstName" placeholder="First name" required>

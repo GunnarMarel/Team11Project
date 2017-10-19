@@ -28,7 +28,7 @@
       <main>
         <div class="grid">
           <div class="row">
-            <div class="col col-6 col-sm-12">
+            <div class="col col-12 col-sm-12">
               <h2 class="heading heading--main">All rentals:</h2>
                   <table class="search-list">
                     <tr>
@@ -40,14 +40,15 @@
                     </tr>
                       <tr th:each="car: ${carList}">
                         <td>
-                          <form method="POST">
-                            <input type="submit" th:text="${car.carModel}" />
-                            <input name="rentalId" type="hidden" value="${car.rentalId}" />
+                          <form action="#" th:action="@{/allRentals}" th:object="${car}" method="post">
+                            <input type="radio" name="car" th:text="${car.carModel}" th:value="${car}"/>
+                            <input type="submit" value="Submit" />
                           </form>
+                            
                         </td>
-                        <td th:text="${car.carType}" />
+                        <td th:text="${car.carModel}" />
                         <td th:text="${car.startDate}" </td> 
-                        <td th:text="${car.startDate}"</td>
+                        <td th:text="${car.endDate}"</td>
                         <td> $/day: </td>
                         <td th:text="${car.price}"</td>
                       </tr>

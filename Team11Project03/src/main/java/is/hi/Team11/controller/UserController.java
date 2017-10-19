@@ -47,7 +47,7 @@ public class UserController {
             @RequestParam String logInName, @RequestParam String logInPass, Model model) { 
         
         if (userService.usernameTaken(logInName) == true) {
-            model.addAttribute("registerError", "error: Username is already taken.");
+            model.addAttribute("registerError", "Error: Username is already taken.");
             return "register";
         }
         else {
@@ -88,7 +88,7 @@ public class UserController {
             @RequestParam String logInPass, Model model, HttpSession session) {
         User user = userService.userLogin(logInName, logInPass);
         if (user == null) {
-            model.addAttribute("logInError", "attempt failed, please try again.");
+            model.addAttribute("logInError", "Login attempt failed, please try again.");
             return "login";
         }
         model.addAttribute("user", user);

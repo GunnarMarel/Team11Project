@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -98,9 +99,11 @@ public class RentalController {
      * @return page with info on chosen car
      */
     @RequestMapping(value = "/allRentals", method = RequestMethod.POST)
-    public String moreInfo(Model model, @RequestParam int rentalId) {
-        Long id = Long.valueOf(rentalId);
-        model.addAttribute("rental", rentalService.findRental(id));
+    public String moreInfo(Model model, @ModelAttribute Rental car) {
+        //Long id = Long.valueOf(rentalId);
+        System.out.println("Name "+car.getCarModel());
+        //Rental rental = car;
+        //model.addAttribute("rental", rentalService.findRental(rental.getCarId()));
         return "moreInfo";  
     }   
     
