@@ -99,11 +99,9 @@ public class RentalController {
      * @return page with info on chosen car
      */
     @RequestMapping(value = "/allRentals", method = RequestMethod.POST)
-    public String moreInfo(Model model, @ModelAttribute Rental car) {
-        //Long id = Long.valueOf(rentalId);
-        System.out.println("Name "+car.getCarModel());
-        //Rental rental = car;
-        //model.addAttribute("rental", rentalService.findRental(rental.getCarId()));
+    public String moreInfo(Model model, @RequestParam int car) {
+        Long id = Long.valueOf(car);
+        model.addAttribute("rental", rentalService.findRental(id));
         return "moreInfo";  
     }   
     
