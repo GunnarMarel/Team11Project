@@ -41,8 +41,8 @@
                       <tr th:each="car: ${carList}">
                         <td>
                           <form action="#" th:action="@{/allRentals}" th:object="${car}" method="post">
-                            <input type="radio" name="car" th:text="${car.carModel}" th:value="${car}"/>
-                            <input type="submit" value="Submit" />
+                            <input type="hidden" name="car" th:value="${car.rentalId}"/>
+                            <input type="submit" th:value="${car.carModel}" />
                           </form>
                             
                         </td>

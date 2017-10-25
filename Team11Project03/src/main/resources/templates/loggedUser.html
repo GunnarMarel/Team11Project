@@ -14,7 +14,7 @@
           <h4 class="heading heading--haus">Stutt Leiga</h4>
           <div class="headlinks">
             <form>
-              <input type="button" class="button button--head" value="User"/>
+              <input type="button" class="button button--head" th:value="${user.firstName}" />
             </form>
             <form>
               <input type="button" class="button button--head" value="Logout" onclick="window.location.href='/logout.html'" />
