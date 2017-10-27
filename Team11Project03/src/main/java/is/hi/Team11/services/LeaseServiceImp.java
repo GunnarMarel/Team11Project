@@ -9,6 +9,7 @@ import is.hi.Team11.model.Lease;
 import is.hi.Team11.repository.LeaseRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * HBV501G Hugbúnaðarverkefni 1
  * Háskóli Íslands
  */
+@Service
 public class LeaseServiceImp implements LeaseService{
 
     @Autowired

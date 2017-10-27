@@ -1,9 +1,11 @@
 package is.hi.Team11.controller;
 
 import is.hi.Team11.model.Car;
+import is.hi.Team11.model.Lease;
 import is.hi.Team11.model.Rental;
 import is.hi.Team11.model.User;
 import is.hi.Team11.services.CarService;
+import is.hi.Team11.services.LeaseService;
 import is.hi.Team11.services.RentalService;
 import java.sql.Date;
 import java.text.ParseException;
@@ -11,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +38,8 @@ public class RentalController {
     RentalService rentalService;
     @Autowired
     CarService carService;
+    @Autowired
+    LeaseService leaseService;
     
     /**
      * Page where a user registers a car for rent
@@ -65,7 +70,40 @@ public class RentalController {
         carService.save(car);
         rentalService.save(rental);
         return "loggedUser";
-    }  
+    }
+    
+     /**
+     * Gets information about chosen car and sends user to new page with said information
+     * @param model
+     * @param rentalId
+     * @return page with info on chosen car
+     */
+    @RequestMapping(value = "/move", method = RequestMethod.POST)
+    public String leaseCar(Model model, @RequestParam int rental) {
+    Long id = Long.valueOf(rental);
+        model.addAttribute("rental", rentalService.findRental(id));
+        return "leaseCar";  
+    }
+
+    /**
+     * Registers a new car for rent
+     * @param rentalId
+     * @param owner
+     * @param price
+     * @param startDate
+     * @param endDate
+     * @return start page for logged in users
+     */
+    @RequestMapping(value = "/leaseCar", method = RequestMethod.POST)
+    public String saveLease(@RequestParam int rentalId,@RequestParam String owner,@RequestParam int price,@RequestParam String startDate, 
+            @RequestParam String endDate,HttpSession session) {
+        
+        User user = (User)session.getAttribute("loggedUser");
+        Lease lease = new Lease(Long.valueOf(rentalId),owner, user.getLogInName(), ((int) getTotalPrice(dateParser(startDate),dateParser(endDate))*price), dateParser(startDate), dateParser(endDate));
+                //(int) getTotalPrice(dateParser(startDate),dateParser(endDate),price)
+        leaseService.save(lease);
+        return "loggedUser";
+    }
     
     /**
      * Displays all rentals
@@ -79,6 +117,19 @@ public class RentalController {
         return "allRentals";  
     }
 
+    /**
+     * Displays users rental cars
+     *
+     * @param model
+     * @return page with users rental cars
+     */
+    @RequestMapping("/myLeases")
+    public String myLeases(Model model, HttpSession session) {
+        User user = (User)session.getAttribute("loggedUser");
+        model.addAttribute("myLeases", leaseService.findRenter(user.getLogInName()));
+        return "myLeases";  
+    }
+    
     /**
      * Displays users rental cars
      *
@@ -103,7 +154,8 @@ public class RentalController {
         Long id = Long.valueOf(car);
         model.addAttribute("rental", rentalService.findRental(id));
         return "moreInfo";  
-    }   
+    }
+    
     
     /**
      * Parses date from string and converts it to sql Date
@@ -119,6 +171,11 @@ public class RentalController {
         } catch (ParseException ex) {
             return null;
         }
+    }
+    
+    public long getTotalPrice(Date d1, Date d2) {
+    long diff = d2.getTime() - d1.getTime();
+    return ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)));
     }
 
 /* 

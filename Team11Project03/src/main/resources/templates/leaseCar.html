@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Slab" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
-        <title>Home</title>
+        <title>Lease a car</title>
     </head>
     <body>
       <header class="subpage">
@@ -14,7 +14,7 @@
           <h4 class="heading heading--haus">Stutt Leiga</h4>
           <div class="headlinks">
             <form>
-              <input type="button" class="button button--head" value="User" />
+              <input type="button" class="button button--head" value="User"/>
             </form>
             <form>
               <input type="button" class="button button--head" value="Logout" onclick="window.location.href='/logout.html'" />
@@ -29,27 +29,25 @@
         <div class="grid">
           <div class="row">
             <div class="col col-6 col-sm-12">
-              <div>
-                <a href="/listUsers.html">All users</a>
-              </div>
-              <div>
-                <a href="/carRegister.html">Register a rental</a>
-              </div>
-              <div>
-                <a href="/myRentals.html">Your rentals</a>
-              </div>
-              <div>
-                <a href="/allRentals.html">All rentals</a>
-              </div>
-              <div>
-                <a href="/search.html">Search</a>
-              </div>
-              <div>
-                <a href="/myLeases.html">Your leases</a>
-              </div>  
+              <form action="#" th:action="@{/leaseCar}" th:object="${lease}" method="POST">
+                <h2 class="heading heading--main">Lease car:</h2>
+                 <div>
+                  <input type="hidden" name="rentalId" id="rentalId" th:value="${rental.rentalId}"/>
+                  <input type="hidden" name="owner" id="owner" th:value="${rental.ownerName}"/>
+                  <input type="hidden" name="price" id="price" th:value="${rental.price}"/>
+                </div> 
+                <div class="fill-in-line">
+                  <label for="startDate">Pick Up:</label>
+                  <input name="startDate" type="date" placeholder="date" min="2000-01-01" max="2100-01-01"</input>
+                  <label for="endDate"> Return:</label>
+                  <input name="endDate" type="date" placeholder="date" min="2000-01-01" max="2100-01-01"</input>
+                </div>
+                <div>
+                  <input type="submit" value="Lease"/>
+                </div>
+              </form>
             </div>
           </div>
-        </div>
       </main>
       <footer>
         <div class="bottom-footer">
@@ -60,3 +58,4 @@
       </footer>
     </body>
 </html>
+
