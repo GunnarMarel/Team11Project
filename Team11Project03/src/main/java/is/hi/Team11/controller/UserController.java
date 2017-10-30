@@ -67,6 +67,16 @@ public class UserController {
     }
     
     /**
+     * Page with user information
+     * @return page with user info
+     */
+    @RequestMapping("/user")
+    public String userPage(Model model, HttpSession session){
+        model.addAttribute("user", (User)session.getAttribute("loggedUser"));
+        return "user";                            
+    }
+    
+    /**
      * Start page for users that are logged in
      * @return page for logged in users
      */
