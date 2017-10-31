@@ -31,11 +31,21 @@
             <div class="col col-6 col-sm-12">
               <h2 th:text="${rental.carModel}"</h2>
               <div>
+                  
+              </div>
+              <div>
                   <p>Owned by </p><p th:text="${rental.ownerName}" />
                   <p>Car rating: </p>
                   <p>Description: </p>
                   <p>Price per day:</p><p th:text="${rental.price}" />
-                  <a href="/loggedUser.html">Lease car</a>
+                  <div>
+                      <td>
+                          <form action="#" th:action="@{/move}" th:object="${rental}" method="post">
+                            <input type="hidden" name="rental" th:value="${rental.rentalId}"/>
+                            <input type="submit" value="Book now" />
+                          </form>  
+                        </td>
+                 </div>
               </div>
             </div>
           </div>

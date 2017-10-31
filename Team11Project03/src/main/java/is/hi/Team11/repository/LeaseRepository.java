@@ -23,9 +23,19 @@ public interface LeaseRepository extends JpaRepository<Lease, Long> {
     
     Lease save(Lease lease);
     
-    @Query(value = "SELECT l FROM Lease l where l.owner = :owner ")
-    List<Lease> searchOwner(@Param("owner") String owner);
+     /**
+     * Finds all leases owned by specific user
+     * @param userName
+     * @return list of leases owned by user
+     */ 
+    @Query(value = "SELECT l FROM Lease l where l.owner = :userName ")
+    List<Lease> searchOwner(@Param("userName") String userName);
     
-    @Query(value = "SELECT l FROM Lease l where l.renter = :renter ")
-    List<Lease> searchRenter(@Param("renter") String renter);
+     /**
+     * Finds all leases owned by specific user
+     * @param userName
+     * @return list of leases owned by user
+     */ 
+    @Query(value = "SELECT l FROM Lease l where l.renter = :userName ")
+    List<Lease> searchRenter(@Param("userName") String userName);
 }

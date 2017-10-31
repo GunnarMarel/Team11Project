@@ -21,18 +21,38 @@ import javax.persistence.Table;
 public class Lease {
 
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name="leaseId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long leaseId;
     
+    private Long rentalId;
     private String owner;
     private String renter;
     private int fullPrice;
     private Date startDate;
     private Date endDate;
+
     
-    @OneToOne
-    private Rental rental;
+    public Lease(Long rentalId, String owner, String renter, int fullPrice, Date startDate, Date endDate) {
+        this.rentalId = rentalId;
+        this.owner = owner;
+        this.renter = renter;
+        this.fullPrice = fullPrice;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
+    public Lease(){
+        
+    }
+
+    public Long getRentalId() {
+        return rentalId;
+    }
+
+    public void setRentalId(Long rentalId) {
+        this.rentalId = rentalId;
+    }
 
     public Date getStartDate() {
         return startDate;
@@ -50,12 +70,12 @@ public class Lease {
         this.endDate = endDate;
     }
 
-    public Long getId() {
-        return id;
+    public Long getLeaseId() {
+        return leaseId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setLeaseId(Long leaseId) {
+        this.leaseId = leaseId;
     }
 
     public String getOwner() {
@@ -81,12 +101,6 @@ public class Lease {
     public void setFullPrice(int fullPrice) {
         this.fullPrice = fullPrice;
     }
-
-    public Rental getRental() {
-        return rental;
-    }
-
-    public void setRental(Rental rental) {
-        this.rental = rental;
-    }    
+    
+    
 }
