@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>HeadOfPage</title>
+</head>
+<body>
+	<h1>AYE</h1>
+	<form action="#" th:action="@{/headCase}" th:object="${user}" method="post">
+		<ul>
+			<li th:errors="*{firstName}" />
+			<li th:errors="*{lastName}" />
+			<li th:errors="*{logInName}" />
+			<li th:errors="*{logInPass}" />
+		</ul>
+		<table border="1">
+			<tr>
+				<td><label th:text="First name" /></td>
+				<td><input type="text" th:field="*{firstName}" /></td>
+			</tr>
+			<tr>
+				<td><label th:text="Last name" /></td>
+				<td><input type="text" th:field="*{lastName}" /></td>
+			</tr>
+			<tr>
+				<td><label th:text="Username" /></td>
+				<td><input type="text" th:field="*{logInName}" /></td>
+			</tr>
+			<tr>
+				<td><label th:text="#{Password}" /></td>
+				<td><input type="text" th:field="*{logInPass}" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Vista" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

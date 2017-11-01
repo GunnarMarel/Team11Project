@@ -3,9 +3,13 @@ package is.hi.Team11.controller;
 import is.hi.Team11.model.User;
 import is.hi.Team11.services.UserService;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +50,10 @@ public class UserController {
     public String saveUser(@RequestParam String firstName, @RequestParam String lastName, 
             @RequestParam String logInName, @RequestParam String logInPass, Model model) { 
         
+        //if (villur.hasErrors()) {
+         //   return "register";
+        //}
+        //else 
         if (userService.usernameTaken(logInName) == true) {
             model.addAttribute("registerError", "Error: Username is already taken.");
             return "register";
@@ -158,4 +166,28 @@ public class UserController {
         model.addAttribute("user", user);
         return "loggedUser";    
     }
+    
+    /**
+     * TEMP prufudót útaf constraints veseni
+     */
+    @RequestMapping(value = "/head")
+    public String head(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "head";
+    }  
+     /**
+     * TEMP prufudót útaf constraints veseni
+     */
+    @RequestMapping(value = "/headCase", method = RequestMethod.POST)
+    public String vistaKennari(@Valid @ModelAttribute(name="user") 
+            User user,
+            BindingResult villur,
+            ModelMap model) {
+       
+        if (!villur.hasErrors()) {
+            System.out.println("NO ERROR!");
+        }
+        return (villur.hasErrors()) ? "head": "loggedUser";
+        }
 }

@@ -16,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Rental contains all details of a rental unit
@@ -38,7 +41,11 @@ public class Rental {
     private Long carId;
     private Date startDate;
     private Date endDate;
+    
+    @NotNull(message = "Set price per day")
+    @Min(value=1, message = "Price must be at least 1$")
     private int price;
+    
     private String ownerName;
     private String carModel;
     private String carType;
