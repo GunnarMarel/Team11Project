@@ -201,7 +201,8 @@ nav {
 
 
 .line-length {
-  width: -webkit-fill-available;
+  width: 300px;
+  height: 35px;
 }
 
 .splash {

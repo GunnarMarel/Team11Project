@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Car contains all details of cars owned by users
@@ -34,7 +36,11 @@ public class Car {
     
     private Long ownerId;
     private String carType;
+    
+    @NotNull(message = "Input car model")
+    @Size(min=1, max=30, message="Input car model")
     private String model;
+    
     private String ownerName;
 
     public String getOwnerName() {

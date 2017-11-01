@@ -16,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * User contains details of user accounts
@@ -40,10 +43,22 @@ public class User {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+    @NotNull(message = "Input first name")
+    @Size(min=1, max=20, message="Input first name")    
     private String firstName;
+    
+    @NotNull(message = "Input last name")
+    @Size(min=1, max=20, message="Input last name")    
     private String lastName;
+    
     private Date birthday;
+    
+    @NotNull(message = "Input username")
+    @Size(min=1, max=15, message="Input username")    
     private String logInName;
+    
+    @NotNull(message = "Input password")
+    @Min(value=5, message="Input password")    
     private String logInPass;
 
     public User(String fn, String ln, String id, String pass) {
