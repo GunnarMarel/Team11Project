@@ -57,5 +57,8 @@ public interface UserService {
      * @return 
      */
     public User updateUser(String logInName);
+    
+    public boolean erALifi();
+
              
 }

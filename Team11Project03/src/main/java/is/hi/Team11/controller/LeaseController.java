@@ -43,14 +43,23 @@ public class LeaseController {
      /**
      * Gets information about chosen car and sends user to new page with said information
      * @param model
-     * @param rentalId
+     * @param rental
      * @return page with info on chosen car
      */
     @RequestMapping(value = "/move", method = RequestMethod.POST)
     public String leaseCar(Model model, @RequestParam int rental) {
-    Long id = Long.valueOf(rental);
+        Long id = Long.valueOf(rental);
         model.addAttribute("rental", rentalService.findRental(id));
         return "leaseCar";  
+    }
+    
+    /**
+     * Page where users input their lease information
+     * @return page with lease forms
+     */
+    @RequestMapping(value = "/leaseCar")
+    public String carLease() {
+        return "leaseCar";
     }
 
     /**
@@ -64,13 +73,21 @@ public class LeaseController {
      */
     @RequestMapping(value = "/leaseCar", method = RequestMethod.POST)
     public String saveLease(@RequestParam int rentalId,@RequestParam String owner,@RequestParam int price,@RequestParam String startDate, 
-            @RequestParam String endDate,HttpSession session) {
+            @RequestParam String endDate,HttpSession session, Model model) {
         
+        if (leaseService.dateAvailable(dateParser(startDate), dateParser(endDate),Long.valueOf(rentalId)) == false) {
+            model.addAttribute("dateError", "Error: Car is not available during that date.");
+            model.addAttribute("rental", rentalService.findRental(Long.valueOf(rentalId)));
+            return "leaseCar";
+        }
+        
+        else{
         User user = (User)session.getAttribute("loggedUser");
         Lease lease = new Lease(Long.valueOf(rentalId),owner, user.getLogInName(), ((int) getTotalPrice(dateParser(startDate),dateParser(endDate))*price), dateParser(startDate), dateParser(endDate));
                 //(int) getTotalPrice(dateParser(startDate),dateParser(endDate),price)
         leaseService.save(lease);
         return "loggedUser";
+        }
     }
     
 
@@ -105,9 +122,28 @@ public class LeaseController {
         }
     }
     
+     /**
+     * Parses date from string and converts it to sql Date
+     * @param model
+     * @param startDate
+     * @param endDate
+     * @param price
+     * @return 
+     */
+    @RequestMapping(value = "/totalPrice", method = RequestMethod.POST)
+    public String totalPrice(Model model, @RequestParam String startDate, 
+        @RequestParam String endDate,@RequestParam int price) {
+        Date d1= dateParser(startDate);
+        Date d2= dateParser(endDate);
+        long diff = d2.getTime() - d1.getTime();
+        int fullPrice =(int) ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS))*price);
+        model.addAttribute("fullPrice", fullPrice);
+        return "totalPrice";
+    }
+    
     public long getTotalPrice(Date d1, Date d2) {
-    long diff = d2.getTime() - d1.getTime();
-    return ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)));
+        long diff = d2.getTime() - d1.getTime();
+        return ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)));
     }
 
 

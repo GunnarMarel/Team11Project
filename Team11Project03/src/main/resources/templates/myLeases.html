@@ -33,6 +33,7 @@
               <table class="search-list">
                     <tr>
                       <th>Owner: </th>
+                      <th>Rental Id: </th>
                       <th>Renter: </th>
                       <th>Pick up: </th>
                       <th>Return date: </th>
@@ -45,6 +46,7 @@
                             <input name="rentalId" type="hidden" value="${lease.rentalId}" />
                           </form>
                         </td>
+                        <td th:text="${lease.rentalId}" />
                         <td th:text="${lease.renter}" />
                         <td th:text="${lease.startDate}" </td> 
                         <td th:text="${lease.endDate}"</td>
