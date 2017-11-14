@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Slab" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Slab" rel="stylesheet"/>
+        <link rel="stylesheet" href="styles.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Register a car</title>
     </head>
     <body>
       <header class="subpage">
         <nav class="fixed">
-          <h4 class="heading heading--haus">Stutt Leiga</h4>
+          <h4 class="heading heading--haus">
+              <a class="heading heading--haus" href="/loggedUser.html">Stutt Leiga</a>
+          </h4>
           <div class="headlinks">
+              <div class="dropdown">
+              <form>
+                <input type="button" class="button button--head" th:value="${session.loggedUser.firstName}"> <i class="fa fa-caret-down"> </i> </input>
+              </form>
+              <div class="dropdown-content">
+                <a href="/carRegister.html">Register a rental</a>
+                <a href="/myRentals.html">My rentals</a>
+                <a href="/myLeases.html">My leases</a>
+                <a href="/editUser.html">Edit user</a>
+                <hr>
+                <a href="welcome.html">Logout</a>
+              </div>
+            </div>
             <form>
-              <input type="button" class="button button--head" value="User"/>
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Logout" onclick="window.location.href='/logout.html'" />
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'" />
+              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'"> <i class="fa fa-search"></i> </input>
             </form>
           </div>
         </nav>
@@ -29,7 +40,8 @@
         <div class="grid">
           <div class="row">
             <div class="col col-6 col-sm-12">
-              <form class="info-box" method="POST">
+             <!-- <form class="info-box" method="POST">
+
                 <h2 class="heading heading--main">Car information:</h2>
                 <div class="fill-in-line">
                   <label for="model">Car model:</label>
@@ -65,7 +77,54 @@
                   <input class="line-length" type="text" name="description" id="description" placeholder="This is a car. For rent.">
                 </div>
                 <div>
-                  <input type="submit" value="Register"/>
+                  <button class="button" id="loginButton">Register</button>
+                </div>
+              </form> -->
+             <form class="info-box" id="carform" action="#" th:action="@{/carRegister}" th:object="${rental}" method="post">
+                <h2 class="heading heading--main">Car information:</h2>
+                <div class="fill-in-line">
+                  <label for="model">Car model:</label>
+                  <input class="line-length" type="text" name="carModel" id="carModel" placeholder="Model" th:field="*{carModel}">
+                </div>
+                <div class="error" th:errors="*{carModel}"></div> 
+                <div class="fill-in-line">
+                  <label for="price">Price per day in US$:</label>
+                  <input class="line-length" type="number" name="price" id="price" placeholder="100" th:field="*{price}">
+                </div>
+                <div class="error" th:errors="*{price}"></div> 
+                <div class="cartype">
+                  <p>Car type:</p>
+                <!--  <select form="carform">
+                    <option name="cartype" value="Hatchback">Hatchback</option>
+                    <option name="cartype" value="Sedan">Sedan</option>
+                    <option name="cartype" value="SUV">SUV</option>
+                    <option name="cartype" value="Convertible">Convertible</option>
+                  </select>-->
+                  <label>
+                    <input type="radio" name="cartype" value="Hatchback" > Hatchback
+                  </label>
+                  <label>
+                    <input type="radio" name="cartype" value="Sedan" > Sedan
+                  </label>
+                  <label>
+                    <input type="radio" name="cartype" value="SUV" > SUV
+                  </label>
+                  <label>
+                    <input type="radio" name="cartype" value="Convertible" > Convertible
+                  </label>
+                </div>
+                <div class="fill-in-line">
+                  <label for="stardDate">Available from:</label>
+                  <input name="startDate" type="date" placeholder="date" min="2000-01-01" max="2100-01-01" required </input>
+                  <label for="endDate"> to:</label>
+                  <input name="endDate" type="date" placeholder="date" min="2000-01-01" max="2100-01-01" required </input>
+                </div>
+                <div class="fill-in-line">
+                  <label for="description">Despcription:</label>
+                  <input class="line-length" type="text" name="description" id="description" placeholder="This is a car. For rent.">
+                </div>
+                <div>
+                  <button class="button" id="loginButton">Register</button>
                 </div>
               </form>
             </div>

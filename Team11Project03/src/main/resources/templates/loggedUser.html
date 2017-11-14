@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Slab" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Home</title>
     </head>
     <body>
       <header class="subpage">
         <nav class="fixed">
-          <h4 class="heading heading--haus">Stutt Leiga</h4>
+          <h4 class="heading heading--haus">
+              <a class="heading heading--haus" href="/loggedUser.html">Stutt Leiga</a>
+          </h4>
           <div class="headlinks">
+              <div class="dropdown">
+              <form>
+                <input type="button" class="button button--head" th:value="${session.loggedUser.firstName}"> <i class="fa fa-caret-down"> </i> </input>
+              </form>
+              <div class="dropdown-content">
+                <a href="/carRegister.html">Register a rental</a>
+                <a href="/myRentals.html">My rentals</a>
+                <a href="/myLeases.html">My leases</a>
+                <a href="/editUser.html">Edit user</a>
+                <hr>
+                <a href="welcome.html">Logout</a>
+              </div>
+            </div>
             <form>
-              <input type="button" class="button button--head" value="User" onclick="window.location.href='/user.html'" />
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Logout" onclick="window.location.href='/logout.html'" />
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'" />
+              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'"> <i class="fa fa-search"></i> </input>
             </form>
           </div>
         </nav>
@@ -29,17 +38,23 @@
         <div class="grid">
           <div class="row">
             <div class="col col-6 col-sm-12">
+                <h1 class="heading heading--three">Stutt Leiga:</h1>
+                <p class="about">
+                    Whether you're a car owner looking to make extra money or a traveler desperate for some transportation, Stutt Leiga has your back. 
+                </p>
+                <p class="about">
+                    Start renting right now!
+                </p>
+            </div>
+            <div class="col col-6 col-sm-12">
               <div>
-                <a href="/listUsers.html">All users</a>
+                  <button class="button button--front" onclick="window.location.href='/carRegister.html'">Register a rental <i class="fa fa-pencil fa-fw"></i></button>
               </div>
               <div>
-                <a href="/carRegister.html">Register a rental</a>
+                  <button class="button button--front" onclick="window.location.href='/allRentals.html'">All rentals <i class="fa fa-car"></i></button>
               </div>
               <div>
-                <a href="/allRentals.html">All rentals</a>
-              </div>
-              <div>
-                <a href="/search.html">Search</a>
+                  <button class="button button--front" onclick="window.location.href='/search.html'">Search <i class="fa fa-search"> </i></button>
               </div>  
             </div>
           </div>

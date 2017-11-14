@@ -61,7 +61,7 @@ public class WebMockTest {
         
         when(userService.usernameTaken("John")).thenReturn(false);
         this.mockMvc.perform(post("/register").param("firstName", "John").param("lastName", "John")
-                .param("logInName", "John").param("logInPass", "John")).andDo(print())
+                .param("logInName", "Johnnn").param("logInPass", "Johnnn")).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("User login")));  
     }

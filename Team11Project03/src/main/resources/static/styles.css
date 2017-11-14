@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
+  text-align: -webkit-center;
 }
 
 .grid {
@@ -78,7 +79,7 @@
   box-sizing: border-box;
   margin-bottom: auto;
   padding: 1rem;
-  text-align: left;
+  text-align: -webkit-center;
   line-height: 2;
 }
 
@@ -98,11 +99,12 @@ img {
   background: #f4b832;
   color: #fff;
   font-size: initial;
+  cursor: pointer;
 }
 
 .button--head {
   padding: 6px;
-  width: 63px;
+  width: auto;
   font-size: inherit;
 }
 
@@ -160,11 +162,22 @@ header {
 
 .heading--two {
   font-size: 2rem;
-  margin-top: 200px;
+  margin-top: 35px;
+  color: #ffb001;
+}
+
+.heading--three {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  margin-left: 5px;
+  text-align: initial;
+  color: #000;
 }
 
 .heading--haus {
   font-size: 24px;
+  color: #fff;
+  text-decoration: none;
 }
 
 .heading--main {
@@ -197,12 +210,15 @@ nav {
 
 .fill-in-line {
   display: block;
+  margin-bottom: 10px;
 }
 
 
 .line-length {
   width: 300px;
   height: 35px;
+  display: block;
+  margin: 0.5rem;
 }
 
 .splash {
@@ -223,40 +239,89 @@ footer {
   text-align: center;
 }
 
-@keyframes delay {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.heading--two {
-  opacity: 0;
-  animation-name: delay;
-  animation-delay: 1s;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-}
-
-.heading--index {
-  opacity: 0;
-  animation-name: delay;
-  animation-delay: 2s;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-}
-
-.button--one {
-  opacity: 0;
-  animation-name: delay;
-  animation-delay: 3s;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-}
-
 .cartype {
   display: grid;
+  margin-bottom: inherit;
 }
 
 .label {
     display: block;
     margin-bottom: .5rem;
+}
+
+.error {
+    color: red;
+}
+
+.button:hover {
+  background-color: #ddd;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f4b832;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+main {
+    margin-bottom: 300px;
+}
+
+.search-list-input {
+    border: none;
+    cursor: pointer;
+    color: blue;
+    font-size: initial;
+    background: transparent;
+}
+
+.button--front {
+    margin-bottom: 10px;
+}
+
+.about {
+    text-align: initial;
+    margin-bottom: 40px;
+    margin-left: 5px;
+    font-size: x-large;
+}
+
+.search-list {
+    border-collapse: collapse;
+    text-align-last: left;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f5f5f5
+}
+
+th {
+    background-color: #f4b832;
+    color: white;
 }
