@@ -36,10 +36,10 @@ public class ApplicationTest {
          * returns allRentals.html page with the string "All rentals:"
          */
 	@Test 
-        public void allRentalsReturns() throws Exception {
-        this.mockMvc.perform(get("/allRentals"))                
+        public void welcomeReturns() throws Exception {
+        this.mockMvc.perform(get("/welcome"))                
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("All rentals:")));
+                .andExpect(content().string(containsString("Stutt Leiga")));
     }
 
 }

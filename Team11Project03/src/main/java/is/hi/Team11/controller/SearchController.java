@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,6 +57,19 @@ public class SearchController {
         model.addAttribute("resList", rentalService.rentalSearch(carType, dateParser(startDate), dateParser(endDate)));
         return "searchResults";
     } 
+    
+    /**
+     * Gets information about chosen car and sends user to new page with said information
+     * @param model
+     * @param rentalId
+     * @return page with info on chosen car
+     */
+    @RequestMapping(value = "/moreInfo", method = RequestMethod.POST)
+    public String moreInfo(Model model, @RequestParam int car) {
+        Long id = Long.valueOf(car);
+        model.addAttribute("rental", rentalService.findRental(id));
+        return "moreInfo";  
+    }
     
     /**
      * Parses date from string and converts it to sql Date

@@ -6,21 +6,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Slab" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>My rentals</title>
     </head>
     <body>
       <header class="subpage">
         <nav class="fixed">
-          <h4 class="heading heading--haus">Stutt Leiga</h4>
+          <h4 class="heading heading--haus">
+              <a class="heading heading--haus" href="/loggedUser.html">Stutt Leiga</a>
+          </h4>
           <div class="headlinks">
+              <div class="dropdown">
+              <form>
+                <input type="button" class="button button--head" th:value="${session.loggedUser.firstName}"> <i class="fa fa-caret-down"> </i> </input>
+              </form>
+              <div class="dropdown-content">
+                <a href="/carRegister.html">Register a rental</a>
+                <a href="/myRentals.html">My rentals</a>
+                <a href="/myLeases.html">My leases</a>
+                <a href="/editUser.html">Edit user</a>
+                <hr>
+                <a href="welcome.html">Logout</a>
+              </div>
+            </div>
             <form>
-              <input type="button" class="button button--head" value="User"/>
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Logout" onclick="window.location.href='/logout.html'" />
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'" />
+              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'"> <i class="fa fa-search"></i> </input>
             </form>
           </div>
         </nav>
@@ -29,8 +39,8 @@
         <div class="grid">
           <div class="row">
             <div class="col col-6 col-sm-12">
-              <h2 class="heading heading--main">Your rentals:</h2>
-              <table class="search-list">
+              <h2 class="heading heading--main">Your leases:</h2>
+              <table class="search-list" border="1">
                     <tr>
                       <th>Owner: </th>
                       <th>Rental Id: </th>
@@ -41,17 +51,16 @@
                     </tr>
                       <tr th:each="lease: ${myLeases}">
                         <td>
-                          <form method="POST">
-                            <input type="submit" th:text="${lease.owner}" />
-                            <input name="rentalId" type="hidden" value="${lease.rentalId}" />
+                          <form action="#" th:action="@{/moreInfo}" th:object="${lease}" method="post">
+                            <input type="hidden" name="car" th:value="${lease.rentalId}"/>
+                            <input class="search-list-input" type="submit" th:value="${lease.owner}" />
                           </form>
                         </td>
                         <td th:text="${lease.rentalId}" />
                         <td th:text="${lease.renter}" />
                         <td th:text="${lease.startDate}" </td> 
                         <td th:text="${lease.endDate}"</td>
-                        <td> $/day: </td>
-                        <td th:text="${lease.fullPrice}"</td>
+                        <td th:text="${lease.fullPrice + '$'}"</td>
                       </tr>
                   </table>
             </div>

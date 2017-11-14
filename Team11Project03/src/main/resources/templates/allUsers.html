@@ -6,21 +6,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Slab" />
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>All users</title>
     </head>
     <body>
       <header class="subpage">
         <nav class="fixed">
-          <h4 class="heading heading--haus">Stutt Leiga</h4>
+          <h4 class="heading heading--haus">
+              <a class="heading heading--haus" href="/loggedUser.html">Stutt Leiga</a>
+          </h4>
           <div class="headlinks">
+              <div class="dropdown">
+              <form>
+                <input type="button" class="button button--head" th:value="${session.loggedUser.firstName}"> <i class="fa fa-caret-down"> </i> </input>
+              </form>
+              <div class="dropdown-content">
+                <a href="/carRegister.html">Register a rental</a>
+                <a href="/myRentals.html">My rentals</a>
+                <a href="/myLeases.html">My leases</a>
+                <a href="/editUser.html">Edit user</a>
+                <hr>
+                <a href="welcome.html">Logout</a>
+              </div>
+            </div>
             <form>
-              <input type="button" class="button button--head" value="User"/>
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Logout" onclick="window.location.href='/logout.html'" />
-            </form>
-            <form>
-              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'" />
+              <input type="button" class="button button--head" value="Search" onclick="window.location.href='/search.html'"> <i class="fa fa-search"></i> </input>
             </form>
           </div>
         </nav>

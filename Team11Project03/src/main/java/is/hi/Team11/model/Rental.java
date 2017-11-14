@@ -6,19 +6,16 @@
 package is.hi.Team11.model;
 
 import java.sql.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * Rental contains all details of a rental unit
@@ -42,12 +39,16 @@ public class Rental {
     private Date startDate;
     private Date endDate;
     
-    @NotNull(message = "Set price per day")
-    @Min(value=1, message = "Price must be at least 1$")
+    //@NotNull(message = "Set price per day")
+    @Range(min=1, max=1000, message="Set price per day")
     private int price;
     
     private String ownerName;
+    
+    @NotNull(message = "Please input car model")
+    @Size(min=1, max=20, message="Model must be between 1 and 20 characters long")
     private String carModel;
+    
     private String carType;
     
     public Rental(String ownerName, String carModel,String carType, Date startDate, Date endDate, int price){

@@ -34,7 +34,9 @@ public class UserController {
      * @return page with registration forms
      */
     @RequestMapping(value = "/register")
-    public String userRegister() {
+    public String userRegister(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "register";
     }  
     
@@ -48,13 +50,16 @@ public class UserController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String saveUser(@RequestParam String firstName, @RequestParam String lastName, 
-            @RequestParam String logInName, @RequestParam String logInPass, Model model) { 
+            @RequestParam String logInName, @RequestParam String logInPass, Model model, @Valid @ModelAttribute(name="user") 
+            User users,
+            BindingResult villur,
+            ModelMap models) { 
         
-        //if (villur.hasErrors()) {
-         //   return "register";
-        //}
-        //else 
-        if (userService.usernameTaken(logInName) == true) {
+        if (villur.hasErrors()) {
+            System.out.println("ERR ERR ERR");
+            return "register";
+        }
+        else if (userService.usernameTaken(logInName) == true) {
             model.addAttribute("registerError", "Error: Username is already taken.");
             return "register";
         }
@@ -90,8 +95,13 @@ public class UserController {
      */
     @RequestMapping("/loggedUser")
     public String loggedPage(Model model, HttpSession session){
-        model.addAttribute("user", (User)session.getAttribute("loggedUser"));
-        return "loggedUser";                            
+        if ((User)session.getAttribute("loggedUser") == null) {
+            return "welcome";
+        }
+        else {
+            model.addAttribute("user", (User)session.getAttribute("loggedUser"));
+            return "loggedUser"; 
+        }
     }      
     
     /**
@@ -144,9 +154,14 @@ public class UserController {
      */
     @RequestMapping(value = "/editUser")
     public String editUser(Model model, HttpSession session) {
-        User user = (User)session.getAttribute("loggedUser"); 
-        model.addAttribute("user", userService.findUser(user.getLogInName()));
-        return "editUser";
+        if ((User)session.getAttribute("loggedUser") == null) {
+            return "welcome";
+        }
+        else {
+            User user = (User)session.getAttribute("loggedUser"); 
+            model.addAttribute("user", userService.findUser(user.getLogInName()));
+            return "editUser";
+        }
     }
     
     /**
@@ -166,28 +181,4 @@ public class UserController {
         model.addAttribute("user", user);
         return "loggedUser";    
     }
-    
-    /**
-     * TEMP prufudót útaf constraints veseni
-     */
-    @RequestMapping(value = "/head")
-    public String head(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        return "head";
-    }  
-     /**
-     * TEMP prufudót útaf constraints veseni
-     */
-    @RequestMapping(value = "/headCase", method = RequestMethod.POST)
-    public String vistaKennari(@Valid @ModelAttribute(name="user") 
-            User user,
-            BindingResult villur,
-            ModelMap model) {
-       
-        if (!villur.hasErrors()) {
-            System.out.println("NO ERROR!");
-        }
-        return (villur.hasErrors()) ? "head": "loggedUser";
-        }
 }
