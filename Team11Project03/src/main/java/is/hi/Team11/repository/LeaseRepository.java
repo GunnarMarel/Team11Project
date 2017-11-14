@@ -38,4 +38,14 @@ public interface LeaseRepository extends JpaRepository<Lease, Long> {
      */ 
     @Query(value = "SELECT l FROM Lease l where l.renter = :userName ")
     List<Lease> searchRenter(@Param("userName") String userName);
+    
+     /**
+     * Finds all leases from specific rental
+     * @param renterId
+     * @return list of leases from specific rental
+     */ 
+    @Query(value = "SELECT l FROM Lease l where l.rentalId = :renterId ")
+    List<Lease> searchRenterId(@Param("renterId") Long renterId);
+    
+    
 }

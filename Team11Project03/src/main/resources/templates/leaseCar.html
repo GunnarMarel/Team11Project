@@ -30,7 +30,7 @@
           <div class="row">
             <div class="col col-6 col-sm-12">
               <form action="#" th:action="@{/leaseCar}" th:object="${lease}" method="POST">
-                <h2 class="heading heading--main">Lease car:</h2>
+                <h2 class="heading heading--main">Lease car:</h2><h2 th:text="${dateError}"</h2>
                  <div>
                   <input type="hidden" name="rentalId" id="rentalId" th:value="${rental.rentalId}"/>
                   <input type="hidden" name="owner" id="owner" th:value="${rental.ownerName}"/>

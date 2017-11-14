@@ -6,6 +6,7 @@
 package is.hi.Team11.services;
 
 import is.hi.Team11.model.Lease;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -52,5 +53,21 @@ public interface LeaseService {
      * @param renter
      * @return Lease that matches renter
      */
-    public List<Lease> findRenter(String renter);       
+    public List<Lease> findRenter(String renter);
+    
+    /**
+     * Finds leases that match renters username
+     * @param rentalId
+     * @return Lease that matches renter
+     */
+    public List<Lease> findRenterId(Long rentalId);
+    
+    /**
+     * Checks whether a date has already been booked
+     * @param startDate
+     * @param endDate
+     * @param owner
+     * @return 
+     */
+    public Boolean dateAvailable(Date startDate,Date endDate,Long renterId);
 }
