@@ -38,6 +38,7 @@ public class User {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+    
     @NotNull(message = "Input first name")
     @Size(min=1, max=20, message="First name must be between 1 and 20 characters long")    
     private String firstName;

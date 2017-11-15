@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
@@ -39,7 +38,6 @@ public class Rental {
     private Date startDate;
     private Date endDate;
     
-    //@NotNull(message = "Set price per day")
     @Range(min=1, max=1000, message="Set price per day")
     private int price;
     

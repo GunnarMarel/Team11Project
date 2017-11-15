@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package is.hi.Team11.services;
 
 import is.hi.Team11.model.Lease;
@@ -11,10 +6,11 @@ import java.util.List;
 
 /**
  *
- * @author Óskar Gíslason
- * @date október 2017 
- * HBV501G Hugbúnaðarverkefni 1 Háskóli Íslands
- *
+ * @author Óskar Gíslason & Gunnar Marel
+ * @date October 2017
+ * HBV501G Hugbúnaðarverkefni 1
+ * Háskóli Íslands
+ * 
  * Service that saves leases, finds leases by id, finds owner/renter and lists all leases.
  *
  */
