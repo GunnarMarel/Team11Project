@@ -1,19 +1,13 @@
 package is.hi.Team11.controller;
 
 import is.hi.Team11.model.Car;
-import is.hi.Team11.model.Lease;
 import is.hi.Team11.model.Rental;
 import is.hi.Team11.model.User;
 import is.hi.Team11.services.CarService;
-import is.hi.Team11.services.LeaseService;
 import is.hi.Team11.services.RentalService;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

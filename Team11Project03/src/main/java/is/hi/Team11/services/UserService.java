@@ -50,15 +50,6 @@ public interface UserService {
      * @return 
      */
     public User userLogin(String logInName, String logInPass);
+     
     
-    /**
-     * Updates user information and saves changes to database
-     * @param logInName
-     * @return 
-     */
-    public User updateUser(String logInName);
-    
-    public boolean erALifi();
-
-             
 }

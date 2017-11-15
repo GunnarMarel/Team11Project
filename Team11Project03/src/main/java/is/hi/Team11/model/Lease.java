@@ -100,6 +100,5 @@ public class Lease {
     public void setFullPrice(int fullPrice) {
         this.fullPrice = fullPrice;
     }
-    
-    
+
 }

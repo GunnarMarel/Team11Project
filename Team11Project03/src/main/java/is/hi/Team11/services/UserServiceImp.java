@@ -52,14 +52,5 @@ public class UserServiceImp implements UserService{
     public Boolean usernameTaken(String username) {
         return userRep.findByLogInName(username) != null;
     }
-
-    @Override
-    public User updateUser(String logInName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-    @Override
-    public boolean erALifi() {
-        return true;
-    }
 }

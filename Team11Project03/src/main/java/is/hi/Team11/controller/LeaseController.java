@@ -1,24 +1,17 @@
 package is.hi.Team11.controller;
 
-import is.hi.Team11.model.Car;
 import is.hi.Team11.model.Lease;
-import is.hi.Team11.model.Rental;
 import is.hi.Team11.model.User;
-import is.hi.Team11.services.CarService;
 import is.hi.Team11.services.LeaseService;
 import is.hi.Team11.services.RentalService;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,7 +83,6 @@ public class LeaseController {
         }
     }
     
-
     /**
      * Displays users rental cars
      *
@@ -102,9 +94,7 @@ public class LeaseController {
         User user = (User)session.getAttribute("loggedUser");
         model.addAttribute("myLeases", leaseService.findRenter(user.getLogInName()));
         return "myLeases";  
-    }
-
-    
+    }   
     
     /**
      * Parses date from string and converts it to sql Date
@@ -122,7 +112,7 @@ public class LeaseController {
         }
     }
     
-     /**
+    /**
      * Parses date from string and converts it to sql Date
      * @param model
      * @param startDate
@@ -145,6 +135,4 @@ public class LeaseController {
         long diff = d2.getTime() - d1.getTime();
         return ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)));
     }
-
-
 }
